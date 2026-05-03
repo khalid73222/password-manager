@@ -2,6 +2,8 @@
 #define ADDPASSWORDDIALOG_H
 
 #include <wx/wx.h>
+#include <wx/choice.h>
+#include <wx/gauge.h>
 #include "PasswordManager.h"
 
 class AddPasswordDialog : public wxDialog {
@@ -15,9 +17,14 @@ private:
     wxTextCtrl* txtPassword_;
     wxTextCtrl* txtUrl_;
     wxTextCtrl* txtNotes_;
+    wxChoice* choiceTag_;
+    wxGauge* gaugeStrength_;
+    wxStaticText* lblStrength_;
 
     void OnGenerate(wxCommandEvent& event);
     void OnSave(wxCommandEvent& event);
+    void OnPasswordChanged(wxCommandEvent& event);
+    void updateStrengthMeter(const std::string& password);
 
     wxDECLARE_EVENT_TABLE();
 };

@@ -3,9 +3,18 @@
 
 #include <string>
 #include <ctime>
+#include <wx/wx.h>
 #include "nlohmann/json.hpp"
 
 using json = nlohmann::json;
+
+enum class PasswordTag {
+    NONE,
+    WORK,       // Red
+    PERSONAL,   // Blue
+    FINANCE,    // Green
+    SOCIAL      // Yellow
+};
 
 struct PasswordEntry {
     std::string id;
@@ -16,12 +25,19 @@ struct PasswordEntry {
     std::string notes;
     std::time_t created;
     std::time_t modified;
+    std::time_t lastChanged;
+    PasswordTag tag;
 
-    PasswordEntry() : created(std::time(nullptr)), modified(std::time(nullptr)) {}
+    PasswordEntry()
+        : created(std::time(nullptr)), modified(std::time(nullptr)),
+        lastChanged(std::time(nullptr)), tag(PasswordTag::NONE) {
+    }
 
-    // Just declarations here, no implementations
     json toJson() const;
     static PasswordEntry fromJson(const json& j);
+
+    static wxColour GetTagColor(PasswordTag tag);
+    static wxString GetTagName(PasswordTag tag);
 };
 
 #endif

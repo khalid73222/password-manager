@@ -2,7 +2,7 @@
 #define PASSWORDGENERATORDIALOG_H
 
 #include <wx/wx.h>
-#include <wx/spinctrl.h>  // ADD THIS
+#include <wx/spinctrl.h>
 #include "PasswordManager.h"
 
 class PasswordGeneratorDialog : public wxDialog {
@@ -11,7 +11,7 @@ public:
 
 private:
     PasswordManager* pm_;
-    wxSpinCtrl* spinLength_;        // Make sure these are declared
+    wxSpinCtrl* spinLength_;
     wxCheckBox* chkUpper_;
     wxCheckBox* chkLower_;
     wxCheckBox* chkDigits_;

@@ -1,14 +1,14 @@
+#define _CRT_SECURE_NO_WARNINGS
 #include "PasswordGeneratorDialog.h"
 #include <wx/clipbrd.h>
 #include <wx/sizer.h>
 #include <wx/stattext.h>
-#include <wx/spinctrl.h>  // ADD THIS INCLUDE
+#include <wx/spinctrl.h>
 
-// Use unique IDs, not wxID_ANY
 enum {
     ID_GENERATE = 4000,
     ID_COPY,
-    ID_SPIN_LENGTH  // ADD THIS for the spin control
+    ID_SPIN_LENGTH
 };
 
 wxBEGIN_EVENT_TABLE(PasswordGeneratorDialog, wxDialog)
@@ -22,19 +22,16 @@ PasswordGeneratorDialog::PasswordGeneratorDialog(wxWindow* parent, PasswordManag
 
     wxBoxSizer* mainSizer = new wxBoxSizer(wxVERTICAL);
 
-    // Length
     wxBoxSizer* lenSizer = new wxBoxSizer(wxHORIZONTAL);
     lenSizer->Add(new wxStaticText(this, wxID_ANY, "Length:"), 0, wxALIGN_CENTER_VERTICAL);
 
-    // FIX: Use proper constructor for wxSpinCtrl
     spinLength_ = new wxSpinCtrl(this, ID_SPIN_LENGTH);
     spinLength_->SetRange(4, 64);
-    spinLength_->SetValue(16);  // Set default value separately
+    spinLength_->SetValue(16);
 
     lenSizer->Add(spinLength_, 0, wxLEFT, 5);
     mainSizer->Add(lenSizer, 0, wxEXPAND | wxALL, 10);
 
-    // Options
     chkUpper_ = new wxCheckBox(this, wxID_ANY, "Uppercase (A-Z)");
     chkUpper_->SetValue(true);
     mainSizer->Add(chkUpper_, 0, wxLEFT | wxRIGHT, 10);
@@ -47,16 +44,15 @@ PasswordGeneratorDialog::PasswordGeneratorDialog(wxWindow* parent, PasswordManag
     chkDigits_->SetValue(true);
     mainSizer->Add(chkDigits_, 0, wxLEFT | wxRIGHT, 10);
 
-    chkSpecial_ = new wxCheckBox(this, wxID_ANY, "Special (!@#$...)");  // Fixed quote
+    // FIX: Updated label to reflect safe chars only
+    chkSpecial_ = new wxCheckBox(this, wxID_ANY, "Special (!#_.)");
     chkSpecial_->SetValue(true);
     mainSizer->Add(chkSpecial_, 0, wxLEFT | wxRIGHT, 10);
 
-    // Result
     mainSizer->Add(new wxStaticText(this, wxID_ANY, "Generated Password:"), 0, wxLEFT | wxRIGHT | wxTOP, 10);
     txtResult_ = new wxTextCtrl(this, wxID_ANY, "", wxDefaultPosition, wxDefaultSize, wxTE_READONLY);
     mainSizer->Add(txtResult_, 0, wxEXPAND | wxLEFT | wxRIGHT, 10);
 
-    // Buttons
     wxBoxSizer* btnSizer = new wxBoxSizer(wxHORIZONTAL);
     btnSizer->Add(new wxButton(this, ID_GENERATE, "Generate"), 0, wxALL, 5);
     btnSizer->Add(new wxButton(this, ID_COPY, "Copy to Clipboard"), 0, wxALL, 5);
