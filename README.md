@@ -65,7 +65,3 @@ Your passwords never leave your computer. No servers, no syncing, no third-party
 ---
 
 *Stay secure. Stay organized.*
-
----
-
-Want me to save this as a file, or adjust the tone (more formal, more casual, add emojis, etc.)?
