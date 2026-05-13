@@ -1,0 +1,19 @@
+{
+    "entries": [
+        {
+            "created": 0,
+            "id": "ebc5d4964dc82e52",
+            "lastChanged": 1777627359,
+            "modified": 1777627359,
+            "notes": "for gmail",
+            "password": "mIllIe2217##",
+            "service": "gmail",
+            "tag": 1,
+            "url": "ff",
+            "username": "khalid"
+        }
+    ],
+    "pinHash": "c2acd5f9ebc47f35",
+    "securityAnswerHash": "cff7c4656832f7fc",
+    "securityQuestion": "what is your fav hero?"
+}
